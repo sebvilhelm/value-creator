@@ -58,9 +58,9 @@ export default function Index() {
   return (
     <div>
       {data.valueCreated ? (
-        <p className="text-4xl font-serif">
+        <p className="text-2xl lg:text-4xl xl:text-5xl font-serif text-center">
           Value created{" "}
-          <span className="underline underline-offset-2 decoration-double decoration-violet-600 text-5xl transition-colors hover:text-violet-900">
+          <span className="underline underline-offset-2 decoration-double decoration-violet-600 transition-colors hover:text-violet-900">
             {formatDistanceToNow(new Date(data.valueCreated), {
               addSuffix: true,
             })}
@@ -73,7 +73,7 @@ export default function Index() {
       ) : (
         <Form method="post">
           <button
-            className="bg-gradient-to-b from-violet-500 to-violet-700 text-violet-50 border-4 border-violet-700 text-6xl px-20 py-6 rounded shadow-md transition hover:shadow-lg active:scale-95 outline-none focus:scale-105"
+            className="bg-gradient-to-b from-violet-500 to-violet-700 text-violet-50 border-4 border-violet-700 text-4xl lg:text-6xl px-16 py-6 rounded shadow-md transition hover:shadow-lg active:shadow-sm active:scale-95 outline-none focus:scale-105 hover:scale-105"
             name="value"
             value="create"
           >
