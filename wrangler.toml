@@ -1,0 +1,23 @@
+name = "value-creator"
+type = "javascript"
+
+zone_id = "6fd2410ed341d69e3d27428d0721b3fd"
+account_id = "d51538ef32047368c4a3eb549f5e7f8a"
+route = "*create-value.xyz/*"
+workers_dev = true
+compatibility_date = "2022-01-17"
+
+kv_namespaces = [
+	 { binding = "VALUE_CREATION", id = "d67a9df66b8f4a39b92594164652adbc" }
+]
+
+[site]
+bucket = "./public"
+entry-point = "."
+
+[build]
+command = "npm run build:worker"
+watch_dir = "build/index.js"
+
+[build.upload]
+format="service-worker"
