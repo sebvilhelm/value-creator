@@ -58,9 +58,9 @@ export default function Index() {
   return (
     <div>
       {data.valueCreated ? (
-        <p className="text-2xl lg:text-4xl xl:text-5xl font-serif text-center">
+        <p className="text-2xl lg:text-4xl xl:text-5xl font-serif text-center dark:text-slate-100">
           Value created{" "}
-          <span className="underline underline-offset-2 decoration-double decoration-violet-600 transition-colors hover:text-violet-900">
+          <span className="underline underline-offset-2 decoration-double decoration-violet-600 transition-colors hover:text-violet-900 dark:hover:text-violet-400">
             {formatDistanceToNow(new Date(data.valueCreated), {
               addSuffix: true,
             })}
