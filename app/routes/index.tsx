@@ -1,6 +1,7 @@
 import {
   ActionFunction,
   Form,
+  json,
   LoaderFunction,
   redirect,
   useFetcher,
@@ -11,6 +12,7 @@ import { getSession, commitSession } from "~/utils/session.server";
 import { formatDistanceToNow } from "date-fns";
 import confetti from "canvas-confetti";
 import { useEffect, useState } from "react";
+import { BigText, Highlight } from "~/components/value_created";
 
 export let action: ActionFunction = async ({ request }) => {
   let cookie = request.headers.get("Cookie");
@@ -25,16 +27,19 @@ export let action: ActionFunction = async ({ request }) => {
   });
 };
 
+interface LoaderData {
+  valueCreated: string;
+}
 export let loader: LoaderFunction = async ({ request }) => {
   let session = await getSession(request.headers.get("Cookie"));
 
-  return {
+  return json<LoaderData>({
     valueCreated: session.get("value_created"),
-  };
+  });
 };
 
 export default function Index() {
-  let data = useLoaderData();
+  let data = useLoaderData<LoaderData>();
 
   let fetcher = useFetcher();
   useEffect(() => {
@@ -59,18 +64,15 @@ export default function Index() {
   return (
     <div>
       {data.valueCreated ? (
-        <p className="text-2xl lg:text-4xl xl:text-5xl font-serif text-center dark:text-slate-100">
+        <BigText>
           Value created{" "}
-          <span className="underline underline-offset-2 decoration-double decoration-violet-600 transition-colors hover:text-violet-900 dark:hover:text-violet-400">
+          <Highlight>
             {formatDistanceToNow(new Date(data.valueCreated), {
               addSuffix: true,
             })}
-          </span>
-          !{" "}
-          <span role="img" aria-label="rocket emoji">
-            🚀
-          </span>
-        </p>
+          </Highlight>
+          ! <Rocket />
+        </BigText>
       ) : (
         <fetcher.Form method="post">
           <button
@@ -120,5 +122,13 @@ function fire(particleRatio: number, opts: confetti.Options = {}) {
     Object.assign({}, defaults, opts, {
       particleCount: Math.floor(count * particleRatio),
     })
+  );
+}
+
+export function Rocket() {
+  return (
+    <span role="img" aria-label="rocket emoji">
+      🚀
+    </span>
   );
 }

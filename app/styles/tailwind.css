@@ -531,6 +531,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-gradient-to: #6d28d9;
 }
 
+.decoration-slice {
+  -webkit-box-decoration-break: slice;
+          box-decoration-break: slice;
+}
+
+.decoration-clone {
+  -webkit-box-decoration-break: clone;
+          box-decoration-break: clone;
+}
+
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -579,13 +589,31 @@ Ensure the default browser behavior of the `hidden` attribute.
           text-decoration-color: #7c3aed;
 }
 
+.decoration-solid {
+  -webkit-text-decoration-style: solid;
+          text-decoration-style: solid;
+}
+
 .decoration-double {
   -webkit-text-decoration-style: double;
           text-decoration-style: double;
 }
 
+.decoration-wavy {
+  -webkit-text-decoration-style: wavy;
+          text-decoration-style: wavy;
+}
+
 .underline-offset-2 {
   text-underline-offset: 2px;
+}
+
+.underline-offset-8 {
+  text-underline-offset: 8px;
+}
+
+.underline-offset-4 {
+  text-underline-offset: 4px;
 }
 
 .shadow-md {
