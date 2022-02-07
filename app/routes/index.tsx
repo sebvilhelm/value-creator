@@ -3,6 +3,7 @@ import {
   Form,
   LoaderFunction,
   redirect,
+  useFetcher,
   useLoaderData,
   useTransition,
 } from "remix";
@@ -35,13 +36,13 @@ export let loader: LoaderFunction = async ({ request }) => {
 export default function Index() {
   let data = useLoaderData();
 
-  let transition = useTransition();
+  let fetcher = useFetcher();
   useEffect(() => {
     if (typeof document === "undefined") return;
-    if (transition.submission && transition.type === "actionRedirect") {
+    if (fetcher.submission && fetcher.state === "submitting") {
       triggerConfetti();
     }
-  });
+  }, [fetcher.submission, fetcher.state]);
 
   let [, forceRender] = useState({});
   useEffect(() => {
@@ -71,7 +72,7 @@ export default function Index() {
           </span>
         </p>
       ) : (
-        <Form method="post">
+        <fetcher.Form method="post">
           <button
             className="bg-gradient-to-b from-violet-500 to-violet-700 text-violet-50 border-4 border-violet-700 text-4xl lg:text-6xl px-16 py-6 rounded shadow-md transition hover:shadow-lg active:shadow-sm active:scale-95 outline-none focus:scale-105 hover:scale-105"
             name="value"
@@ -79,7 +80,7 @@ export default function Index() {
           >
             Create value
           </button>
-        </Form>
+        </fetcher.Form>
       )}
     </div>
   );
