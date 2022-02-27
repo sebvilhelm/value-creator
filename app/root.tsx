@@ -32,7 +32,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="min-h-screen w-full px-4 overflow-x-hidden overflow-y-hidden grid place-content-center bg-gradient-radial from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900">
+      <body className="grid min-h-screen w-full place-content-center overflow-x-hidden overflow-y-hidden bg-gradient-radial from-slate-50 to-slate-100 px-4 dark:from-slate-800 dark:to-slate-900">
         <Outlet />
         <ScrollRestoration />
         <Scripts />

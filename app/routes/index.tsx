@@ -76,7 +76,7 @@ export default function Index() {
       ) : (
         <fetcher.Form method="post">
           <button
-            className="bg-gradient-to-b from-violet-500 to-violet-700 text-violet-50 border-4 border-violet-700 text-4xl lg:text-6xl px-16 py-6 rounded shadow-md transition hover:shadow-lg active:shadow-sm active:scale-95 outline-none focus:scale-105 hover:scale-105"
+            className="rounded border-4 border-violet-700 bg-gradient-to-b from-violet-500 to-violet-700 px-16 py-6 text-4xl text-violet-50 shadow-md outline-none transition hover:scale-105 hover:shadow-lg focus:scale-105 active:scale-95 active:shadow-sm lg:text-6xl"
             name="value"
             value="create"
           >
