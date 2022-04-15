@@ -1,4 +1,4 @@
-import { createCloudflareKVSessionStorage, createCookie } from "remix";
+import { createCloudflareKVSessionStorage, createCookie } from "@remix-run/cloudflare";
 
 let cookie = createCookie("vc_value", {
   httpOnly: true,

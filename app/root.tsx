@@ -1,13 +1,6 @@
-import {
-  Links,
-  LinksFunction,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "remix";
-import type { MetaFunction } from "remix";
+import type { MetaFunction } from "@remix-run/cloudflare";
+import { LinksFunction } from "@remix-run/cloudflare";
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 import tailwind from "~/styles/tailwind.css";
 
 export const meta: MetaFunction = () => {
