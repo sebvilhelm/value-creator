@@ -6,6 +6,12 @@ export let action: ActionFunction = async ({ request }) => {
   let cookie = request.headers.get("Cookie");
   let session = await getSession(cookie);
 
+  let name = session.get("name");
+
+  if (typeof name !== "string") {
+    return redirect("/set-name");
+  }
+
   session.set("value_created", new Date());
 
   return redirect("/", {

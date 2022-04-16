@@ -1,10 +1,10 @@
-import type { LoaderFunction } from "@remix-run/cloudflare";
+import { LoaderFunction, redirect } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
 import { useFetcher, useLoaderData } from "@remix-run/react";
 import { getSession } from "~/utils/session.server";
 import { formatDistanceToNow } from "date-fns";
 import confetti from "canvas-confetti";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BigText, Highlight } from "~/components/value_created";
 
 interface LoaderData {
@@ -22,12 +22,14 @@ export default function Index() {
   let data = useLoaderData<LoaderData>();
 
   let fetcher = useFetcher();
+  let wasTriggered = useRef(false);
   useEffect(() => {
     if (typeof document === "undefined") return;
-    if (fetcher.submission && fetcher.state === "submitting") {
+    if (data.valueCreated != null && !wasTriggered.current) {
+      wasTriggered.current = true;
       triggerConfetti();
     }
-  }, [fetcher.submission, fetcher.state]);
+  });
 
   let [, forceRender] = useState({});
   useEffect(() => {
