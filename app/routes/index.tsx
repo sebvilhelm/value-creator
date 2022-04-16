@@ -1,23 +1,11 @@
-import { ActionFunction, json, LoaderFunction, redirect } from "@remix-run/cloudflare";
-import { Form, useFetcher, useLoaderData, useTransition } from "@remix-run/react";
-import { getSession, commitSession } from "~/utils/session.server";
+import type { LoaderFunction } from "@remix-run/cloudflare";
+import { json } from "@remix-run/cloudflare";
+import { useFetcher, useLoaderData } from "@remix-run/react";
+import { getSession } from "~/utils/session.server";
 import { formatDistanceToNow } from "date-fns";
 import confetti from "canvas-confetti";
 import { useEffect, useState } from "react";
 import { BigText, Highlight } from "~/components/value_created";
-
-export let action: ActionFunction = async ({ request }) => {
-  let cookie = request.headers.get("Cookie");
-  let session = await getSession(cookie);
-
-  session.set("value_created", new Date());
-
-  return redirect(".", {
-    headers: {
-      "Set-Cookie": await commitSession(session),
-    },
-  });
-};
 
 interface LoaderData {
   valueCreated: string;
@@ -66,7 +54,7 @@ export default function Index() {
           ! <Rocket />
         </BigText>
       ) : (
-        <fetcher.Form method="post">
+        <fetcher.Form method="post" action="/value/new">
           <button
             className="rounded border-4 border-violet-700 bg-gradient-to-b from-violet-500 to-violet-700 px-16 py-6 text-4xl text-violet-50 shadow-md outline-none transition hover:scale-105 hover:shadow-lg focus:scale-105 active:scale-95 active:shadow-sm lg:text-6xl"
             name="value"
