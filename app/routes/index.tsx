@@ -33,14 +33,14 @@ export default function Index() {
 
   let [, forceRender] = useState({});
   useEffect(() => {
-    let interval = setInterval(() => {
-      if (data.valueCreated) {
+    if (data.valueCreated != null) {
+      let interval = setInterval(() => {
         forceRender({});
-      }
-    }, 30000);
-    return () => {
-      clearInterval(interval);
-    };
+      }, 30_000);
+      return () => {
+        clearInterval(interval);
+      };
+    }
   });
 
   return (
