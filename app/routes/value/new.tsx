@@ -11,6 +11,9 @@ export let action: ActionFunction = async ({ request }) => {
   if (typeof name !== "string") {
     return redirect("/set-name");
   }
+  // 1. Create a new value
+  // 2. Set the KV
+  // 3. Set id in session
 
   session.set("value_created", new Date());
 

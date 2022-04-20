@@ -47,8 +47,9 @@ export default function Index() {
     <div>
       {data.valueCreated ? (
         <BigText>
-          Value created{" "}
+          Value created
           <Highlight>
+            {/* TODO: Change into link, that goes to `value/:id` */}
             {formatDistanceToNow(new Date(data.valueCreated), {
               addSuffix: true,
             })}
