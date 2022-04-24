@@ -1,6 +1,7 @@
 import type { MetaFunction } from "@remix-run/cloudflare";
 import { LinksFunction } from "@remix-run/cloudflare";
 import { Links, LiveReload, Meta, Outlet, Scripts } from "@remix-run/react";
+import { PropsWithChildren } from "react";
 import tailwind from "~/styles/tailwind.css";
 
 export const meta: MetaFunction = () => {
@@ -18,6 +19,14 @@ export const links: LinksFunction = () => {
 
 export default function App() {
   return (
+    <Document>
+      <Outlet />
+    </Document>
+  );
+}
+
+function Document({ children }: PropsWithChildren<unknown>) {
+  return (
     <html lang="en" className="h-full">
       <head>
         <meta charSet="utf-8" />
@@ -26,7 +35,7 @@ export default function App() {
         <Links />
       </head>
       <body className="grid h-full w-full place-content-center overflow-x-hidden overflow-y-hidden bg-gradient-radial from-slate-50 to-slate-100 px-4 dark:from-slate-800 dark:to-slate-900">
-        <Outlet />
+        {children}
         <Scripts />
         {process.env.NODE_ENV === "development" && <LiveReload />}
       </body>

@@ -13,6 +13,8 @@ interface LoaderData {
 export let loader: LoaderFunction = async ({ request }) => {
   let session = await getSession(request.headers.get("Cookie"));
 
+  console.log(session.data);
+
   return json<LoaderData>({
     valueCreated: session.get("value_created"),
   });
@@ -47,7 +49,7 @@ export default function Index() {
     <div>
       {data.valueCreated ? (
         <BigText>
-          Value created
+          Value created{" "}
           <Highlight>
             {/* TODO: Change into link, that goes to `value/:id` */}
             {formatDistanceToNow(new Date(data.valueCreated), {
