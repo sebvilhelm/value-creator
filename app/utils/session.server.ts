@@ -8,12 +8,12 @@ let cookie = createCookie("vc_value", {
   secure: true,
   sameSite: "lax",
   maxAge: 43_200,
-  secrets: ["to-the-moon"],
+  secrets: ["to-the-moon"], // TODO: set secret here
 });
 
 let { getSession, destroySession, commitSession } =
   createCloudflareKVSessionStorage({
-    kv: VALUE_CREATION,
+    kv: SESSIONS,
     cookie,
   });
 
