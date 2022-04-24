@@ -1,19 +1,29 @@
 import { formatDistanceToNow } from "date-fns";
 import { json, LoaderFunction } from "@remix-run/cloudflare";
-import { useLoaderData } from "@remix-run/react";
+import { useCatch, useLoaderData } from "@remix-run/react";
 import { BigText, Highlight } from "~/components/value_created";
+import { notFound } from "~/utils/responses.server";
 
 interface LoaderData {
   name: string;
   date: string;
 }
-export let loader: LoaderFunction = ({ request }) => {
-  let url = new URL(request.url);
+export let loader: LoaderFunction = async ({ request, params }) => {
+  let { id } = params;
 
-  return json<LoaderData>({
-    name: url.searchParams.get("name") ?? "No-one",
-    date: new Date(2022, 1, 1).toISOString(),
-  });
+  if (typeof id !== "string") {
+    throw new Error("Invalid id");
+  }
+
+  let value = await VALUES.get(id);
+
+  if (value == null) {
+    throw notFound();
+  }
+
+  let data: LoaderData = JSON.parse(value);
+
+  return json<LoaderData>(data);
 };
 
 export default function Share() {
@@ -29,4 +39,18 @@ export default function Share() {
       !
     </BigText>
   );
+}
+
+export function CatchBoundary() {
+  let caught = useCatch();
+
+  function getMessage() {
+    if (caught.status === 404) {
+      return "This value does not exist";
+    } else {
+      return "Something went wrong";
+    }
+  }
+
+  return <BigText>{getMessage()}</BigText>;
 }

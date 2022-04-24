@@ -8,7 +8,8 @@ workers_dev = true
 compatibility_date = "2022-01-17"
 
 kv_namespaces = [
-	 { binding = "VALUE_CREATION", id = "d67a9df66b8f4a39b92594164652adbc" }
+	 { binding = "SESSIONS", id = "ef87ae409c954f38bebf2a23e1fda8ab" },
+	 { binding = "VALUES", id= "2eb1ef9c49a5454a887a6fcb152d6e69" }
 ]
 
 [site]

@@ -12,10 +12,14 @@ export let action: ActionFunction = async ({ request }) => {
     return redirect("/set-name");
   }
   // 1. Create a new value
+  let id = crypto.randomUUID();
+  let date = (new Date()).toISOString();
+  
   // 2. Set the KV
+  await VALUES.put(id, JSON.stringify({date, name}));
   // 3. Set id in session
-
-  session.set("value_created", new Date());
+  session.set("value_id", id);
+  session.set("value_created", date);
 
   return redirect("/", {
     headers: {
