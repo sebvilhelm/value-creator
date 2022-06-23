@@ -59,7 +59,7 @@ export default function Index() {
           ! <Rocket />
         </BigText>
       ) : (
-        <fetcher.Form method="post" action="/value/new">
+        <fetcher.Form method="post" action="/values/new">
           <button
             className="rounded border-4 border-violet-700 bg-gradient-to-b from-violet-500 to-violet-700 px-16 py-6 text-4xl text-violet-50 shadow-md outline-none transition hover:scale-105 hover:shadow-lg focus:scale-105 active:scale-95 active:shadow-sm lg:text-6xl"
             name="value"
