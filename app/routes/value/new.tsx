@@ -1,5 +1,6 @@
 import type { ActionFunction } from "@remix-run/cloudflare";
 import { redirect } from "@remix-run/cloudflare";
+import { createValue } from "~/models/values.server";
 import { commitSession, getSession } from "~/utils/session.server";
 
 export let action: ActionFunction = async ({ request }) => {
@@ -11,13 +12,8 @@ export let action: ActionFunction = async ({ request }) => {
   if (typeof name !== "string") {
     return redirect("/set-name");
   }
-  // 1. Create a new value
-  /* @ts-ignore  */
-  let id = crypto.randomUUID();
-  let date = new Date().toISOString();
 
-  // 2. Set the KV
-  await VALUES.put(id, JSON.stringify({ date, name }));
+  let [id, { date }] = await createValue(name);
 
   // 3. Set id in session
   session.set("value_id", id);
