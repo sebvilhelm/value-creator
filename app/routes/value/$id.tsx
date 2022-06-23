@@ -1,5 +1,6 @@
+import type { LoaderFunction } from "@remix-run/cloudflare";
 import { formatDistanceToNow } from "date-fns";
-import { json, LoaderFunction } from "@remix-run/cloudflare";
+import { json } from "@remix-run/cloudflare";
 import { useCatch, useLoaderData } from "@remix-run/react";
 import { BigText, Highlight } from "~/components/value_created";
 import { notFound } from "~/utils/responses.server";

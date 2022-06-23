@@ -1,4 +1,4 @@
-import { LoaderFunction, redirect } from "@remix-run/cloudflare";
+import type { LoaderFunction } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
 import { useFetcher, useLoaderData } from "@remix-run/react";
 import { getSession } from "~/utils/session.server";

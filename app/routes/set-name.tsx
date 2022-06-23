@@ -1,4 +1,5 @@
-import { ActionFunction, redirect } from "@remix-run/cloudflare";
+import type { ActionFunction } from "@remix-run/cloudflare";
+import { redirect } from "@remix-run/cloudflare";
 import { Form } from "@remix-run/react";
 import { commitSession, getSession } from "~/utils/session.server";
 
