@@ -8,7 +8,7 @@ interface LoaderData {
   name: string;
   date: string;
 }
-export let loader: LoaderFunction = async ({ request, params }) => {
+export let loader: LoaderFunction = async ({ params }) => {
   let { id } = params;
 
   if (typeof id !== "string") {
