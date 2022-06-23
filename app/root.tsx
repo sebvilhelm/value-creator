@@ -1,7 +1,6 @@
-import type { MetaFunction } from "@remix-run/cloudflare";
-import { LinksFunction } from "@remix-run/cloudflare";
+import type { MetaFunction, LinksFunction } from "@remix-run/cloudflare";
+import type { PropsWithChildren } from "react";
 import { Links, LiveReload, Meta, Outlet, Scripts } from "@remix-run/react";
-import { PropsWithChildren } from "react";
 import tailwind from "~/styles/tailwind.css";
 
 export const meta: MetaFunction = () => {
@@ -37,6 +36,7 @@ function Document({ children }: PropsWithChildren<unknown>) {
       <body className="grid h-full w-full place-content-center overflow-x-hidden overflow-y-hidden bg-gradient-radial from-slate-50 to-slate-100 px-4 dark:from-slate-800 dark:to-slate-900">
         {children}
         <Scripts />
+        {/* @ts-ignore  */}
         {process.env.NODE_ENV === "development" && <LiveReload />}
       </body>
     </html>
