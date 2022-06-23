@@ -4,10 +4,10 @@ import { json } from "@remix-run/cloudflare";
 import { useCatch, useLoaderData } from "@remix-run/react";
 import { BigText, Highlight } from "~/components/value_created";
 import { notFound } from "~/utils/responses.server";
+import { getValueById, Value } from "~/models/values.server";
 
 interface LoaderData {
-  name: string;
-  date: string;
+  value: Value;
 }
 export let loader: LoaderFunction = async ({ params }) => {
   let { id } = params;
@@ -16,24 +16,22 @@ export let loader: LoaderFunction = async ({ params }) => {
     throw new Error("Invalid id");
   }
 
-  let value = await VALUES.get(id);
+  let value = await getValueById(id);
 
   if (value == null) {
     throw notFound();
   }
 
-  let data: LoaderData = JSON.parse(value);
-
-  return json<LoaderData>(data);
+  return json<LoaderData>({ value });
 };
 
 export default function Share() {
-  let data = useLoaderData<LoaderData>();
+  let { value } = useLoaderData<LoaderData>();
   return (
     <BigText>
-      <Highlight>{data.name}</Highlight> created value{" "}
+      <Highlight>{value.name}</Highlight> created value{" "}
       <Highlight>
-        {formatDistanceToNow(new Date(data.date), {
+        {formatDistanceToNow(new Date(value.date), {
           addSuffix: true,
         })}
       </Highlight>
