@@ -14,6 +14,7 @@ export async function getValueById(id: string): Promise<Value | null> {
 }
 
 export async function createValue(name: string): Promise<[string, Value]> {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   /* @ts-ignore  */
   let id = crypto.randomUUID();
   let date = new Date().toISOString();

@@ -4,7 +4,8 @@ import { json } from "@remix-run/cloudflare";
 import { useCatch, useLoaderData } from "@remix-run/react";
 import { BigText, Highlight } from "~/components/value_created";
 import { notFound } from "~/utils/responses.server";
-import { getValueById, Value } from "~/models/values.server";
+import type { Value } from "~/models/values.server";
+import { getValueById } from "~/models/values.server";
 
 interface LoaderData {
   value: Value;
