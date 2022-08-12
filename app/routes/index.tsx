@@ -1,27 +1,26 @@
-import type { LoaderFunction } from "@remix-run/cloudflare";
+import type { LoaderArgs } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
-import { useFetcher, useLoaderData } from "@remix-run/react";
+import { Link, useFetcher, useLoaderData } from "@remix-run/react";
 import { getSession } from "~/utils/session.server";
 import { formatDistanceToNow } from "date-fns";
 import confetti from "canvas-confetti";
 import { useEffect, useRef, useState } from "react";
 import { BigText, Highlight } from "~/components/value_created";
 
-interface LoaderData {
-  valueCreated: string;
-}
-export let loader: LoaderFunction = async ({ request }) => {
+export async function loader({ request }: LoaderArgs) {
   let session = await getSession(request.headers.get("Cookie"));
 
-  console.log(session.data);
+  let valueCreated = session.get("value_created");
+  let valueId = session.get("value_id");
 
-  return json<LoaderData>({
-    valueCreated: session.get("value_created"),
+  return json({
+    valueCreated,
+    valueId,
   });
-};
+}
 
 export default function Index() {
-  let data = useLoaderData<LoaderData>();
+  let data = useLoaderData<typeof loader>();
 
   let fetcher = useFetcher();
   let wasTriggered = useRef(false);
@@ -50,12 +49,14 @@ export default function Index() {
       {data.valueCreated ? (
         <BigText>
           Value created{" "}
-          <Highlight>
-            {/* TODO: Change into link, that goes to `value/:id` */}
-            {formatDistanceToNow(new Date(data.valueCreated), {
-              addSuffix: true,
-            })}
-          </Highlight>
+          <Link to={`/values/${data.valueId}`}>
+            <Highlight>
+              {/* TODO: Change into link, that goes to `value/:id` */}
+              {formatDistanceToNow(new Date(data.valueCreated), {
+                addSuffix: true,
+              })}
+            </Highlight>
+          </Link>
           ! <Rocket />
         </BigText>
       ) : (
