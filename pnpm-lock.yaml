@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@cloudflare/workers-types': 3.14.1
+  '@playwright/test': ^1.25.0
   '@remix-run/cloudflare': ^1.6.7
   '@remix-run/cloudflare-workers': ^1.6.7
   '@remix-run/dev': ^1.6.7
@@ -42,6 +43,7 @@ dependencies:
 
 devDependencies:
   '@cloudflare/workers-types': 3.14.1
+  '@playwright/test': 1.25.0
   '@remix-run/dev': 1.6.7_biqbaboplfbrettd7655fr4n2y
   '@remix-run/eslint-config': 1.6.7_7pxu6c7vgs7yic5gnzu7awjkkq
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.8
@@ -1796,6 +1798,15 @@ packages:
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
     dependencies:
       json-parse-even-better-errors: 2.3.1
+    dev: true
+
+  /@playwright/test/1.25.0:
+    resolution: {integrity: sha512-j4EZhTTQI3dBeWblE21EV//swwmBtOpIrLdOIJIRv4uqsLdHgBg1z+JtTg+AeC5o2bAXIE26kDNW5A0TimG8Bg==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      '@types/node': 17.0.23
+      playwright-core: 1.25.0
     dev: true
 
   /@remix-run/cloudflare-workers/1.6.7_gwhqvtcy67gag3owlzeoeoumza:
@@ -6584,6 +6595,12 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       find-up: 3.0.0
+    dev: true
+
+  /playwright-core/1.25.0:
+    resolution: {integrity: sha512-kZ3Jwaf3wlu0GgU0nB8UMQ+mXFTqBIFz9h1svTlNduNKjnbPXFxw7mJanLVjqxHJRn62uBfmgBj93YHidk2N5Q==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /posix-character-classes/0.1.1:
