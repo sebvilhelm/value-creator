@@ -1,5 +1,5 @@
 import type { LoaderFunction } from "@remix-run/cloudflare";
-import { formatDistanceToNow } from "date-fns";
+import { format } from "date-fns";
 import { json } from "@remix-run/cloudflare";
 import { useCatch, useLoaderData } from "@remix-run/react";
 import { BigText, Highlight } from "~/components/value_created";
@@ -31,12 +31,7 @@ export default function Share() {
   return (
     <BigText>
       <Highlight>{value.name}</Highlight> created value{" "}
-      <Highlight>
-        {formatDistanceToNow(new Date(value.date), {
-          addSuffix: true,
-        })}
-      </Highlight>
-      !
+      <Highlight>{format(new Date(value.date), "dd-MM-yyyy HH:MM")}</Highlight>!
     </BigText>
   );
 }
