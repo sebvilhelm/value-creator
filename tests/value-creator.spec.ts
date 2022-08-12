@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 
 test("can create value", async ({ page }) => {
   // Go to page
-  await page.goto("http://localhost:8787/");
+  await page.goto("");
 
   // Click Create value button
   await page.locator("text=Create value").click();
