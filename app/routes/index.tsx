@@ -14,8 +14,8 @@ export async function loader({ request }: LoaderArgs) {
   let valueId = session.get("value_id");
 
   return json({
-    valueCreated,
-    valueId,
+    valueCreated: nullOrString(valueCreated),
+    valueId: nullOrString(valueId),
   });
 }
 
@@ -32,16 +32,21 @@ export default function Index() {
     }
   });
 
-  let [, forceRender] = useState({});
-  useEffect(() => {
+  let [formattedDate, setFormattedDate] = useState<string | null>(() => {
     if (data.valueCreated != null) {
-      let interval = setInterval(() => {
-        forceRender({});
-      }, 30_000);
-      return () => {
-        clearInterval(interval);
-      };
+      return formatDate(data.valueCreated);
     }
+    return null;
+  });
+  useEffect(() => {
+    let interval = setInterval(() => {
+      if (data.valueCreated != null) {
+        setFormattedDate(formatDate(data.valueCreated));
+      }
+    }, 1_000);
+    return () => {
+      clearInterval(interval);
+    };
   });
 
   return (
@@ -50,12 +55,7 @@ export default function Index() {
         <BigText>
           Value created{" "}
           <Link to={`/values/${data.valueId}`}>
-            <Highlight>
-              {/* TODO: Change into link, that goes to `value/:id` */}
-              {formatDistanceToNow(new Date(data.valueCreated), {
-                addSuffix: true,
-              })}
-            </Highlight>
+            <Highlight>{formattedDate}</Highlight>
           </Link>
           ! <Rocket />
         </BigText>
@@ -117,4 +117,14 @@ export function Rocket() {
       🚀
     </span>
   );
+}
+
+function nullOrString(v: any): string | null {
+  return typeof v === "string" ? v : null;
+}
+
+function formatDate(dateString: string): string {
+  return formatDistanceToNow(new Date(dateString), {
+    addSuffix: true,
+  });
 }
