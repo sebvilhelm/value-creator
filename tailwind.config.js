@@ -1,3 +1,6 @@
+/**
+ * @type {import('tailwindcss').Config}
+ */
 module.exports = {
   content: ["./app/**/*.tsx"],
   darkMode: "media",
@@ -9,5 +12,5 @@ module.exports = {
     },
   },
   variant: {},
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };
