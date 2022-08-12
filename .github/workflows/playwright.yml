@@ -26,7 +26,7 @@ jobs:
     - name: Install Playwright Browsers
       run: pnpx playwright install --with-deps
     - name: Start local server
-      run: pnpm run start
+      run: pnpm run start &
     - name: Run Playwright tests
       run: pnpx playwright test
     - uses: actions/upload-artifact@v2
