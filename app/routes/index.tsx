@@ -119,7 +119,7 @@ export function Rocket() {
   );
 }
 
-function nullOrString(v: any): string | null {
+function nullOrString(v: unknown): string | null {
   return typeof v === "string" ? v : null;
 }
 
