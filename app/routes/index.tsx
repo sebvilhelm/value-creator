@@ -51,7 +51,7 @@ export default function Index() {
 
   return (
     <div>
-      {data.valueCreated ? (
+      {formattedDate != null ? (
         <BigText>
           Value created{" "}
           <Link to={`/values/${data.valueId}`}>
