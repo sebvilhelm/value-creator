@@ -8,7 +8,7 @@ let cookie = createCookie("vc_value", {
   secure: true,
   sameSite: "lax",
   maxAge: 43_200,
-  secrets: ["to-the-moon"], // TODO: set secret here
+  secrets: [SESSION_SECRET],
 });
 
 let { getSession, destroySession, commitSession } =
