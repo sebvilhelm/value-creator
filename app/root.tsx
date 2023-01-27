@@ -36,9 +36,7 @@ function Document({ children }: PropsWithChildren<unknown>) {
       <body className="grid h-full w-full place-content-center overflow-x-hidden overflow-y-hidden bg-gradient-radial from-slate-50 to-slate-100 px-4 dark:from-slate-800 dark:to-slate-900">
         {children}
         <Scripts />
-        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-        {/* @ts-ignore  */}
-        {process.env.NODE_ENV === "development" && <LiveReload />}
+        <LiveReload />
       </body>
     </html>
   );

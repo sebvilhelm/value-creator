@@ -1,11 +1,12 @@
 name = "value-creator"
-type = "javascript"
+
+workers_dev = true
+main = "./build/index.js"
+compatibility_date = "2022-04-05"
 
 zone_id = "6fd2410ed341d69e3d27428d0721b3fd"
 account_id = "d51538ef32047368c4a3eb549f5e7f8a"
 route = "*create-value.xyz/*"
-workers_dev = true
-compatibility_date = "2022-01-17"
 
 kv_namespaces = [
 	 { binding = "SESSIONS", id = "ef87ae409c954f38bebf2a23e1fda8ab" },
@@ -18,9 +19,6 @@ entry-point = "."
 
 [build]
 command = "npm run build"
-
-[build.upload]
-format="service-worker"
 
 [vars]
 SESSION_SECRET="secret"
