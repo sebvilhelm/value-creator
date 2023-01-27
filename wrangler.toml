@@ -4,21 +4,19 @@ workers_dev = true
 main = "./build/index.js"
 compatibility_date = "2022-04-05"
 
-zone_id = "6fd2410ed341d69e3d27428d0721b3fd"
 account_id = "d51538ef32047368c4a3eb549f5e7f8a"
-route = "*create-value.xyz/*"
+route = { pattern = "*create-value.xyz/*", zone_id = "6fd2410ed341d69e3d27428d0721b3fd" }
 
 kv_namespaces = [
-	 { binding = "SESSIONS", id = "ef87ae409c954f38bebf2a23e1fda8ab" },
-	 { binding = "VALUES", id= "2eb1ef9c49a5454a887a6fcb152d6e69" }
+  { binding = "SESSIONS", id = "ef87ae409c954f38bebf2a23e1fda8ab" },
+  { binding = "VALUES", id = "2eb1ef9c49a5454a887a6fcb152d6e69" },
 ]
 
 [site]
 bucket = "./public"
-entry-point = "."
 
 [build]
 command = "npm run build"
 
 [vars]
-SESSION_SECRET="secret"
+SESSION_SECRET = "secret"
