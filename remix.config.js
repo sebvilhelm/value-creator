@@ -6,4 +6,7 @@ module.exports = {
   server: "./server.js",
   devServerBroadcastDelay: 1000,
   ignoredRouteFiles: ["**/.*"],
+  future: {
+    v2_routeConvention: true,
+  },
 };
